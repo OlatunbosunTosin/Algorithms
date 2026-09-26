@@ -5,10 +5,6 @@ public class HugeIntegers {
 
     private int[] numberArray = new int[40];
 
-    public HugeIntegers(){
-        Arrays.fill(numberArray,-1);
-    }
-
     public int[] getNumberArray() {
         return numberArray;
     }
@@ -25,9 +21,17 @@ public class HugeIntegers {
 
     public String toString(){
         String numbers = "";
+        int start = 0;
         for(int index = 0; index < numberArray.length; index++){
-            if(numberArray[index] != -1) numbers += numberArray[index];
+            if(numberArray[index] != 0) {
+                start = index;
+                break;
+            }
         }
+        for(int indexes = start; indexes < numberArray.length; indexes++){
+            numbers += numberArray[indexes];
+        }
+
         return numbers;
     }
 
@@ -46,21 +50,43 @@ public class HugeIntegers {
     }
 
     public void add(HugeIntegers hugeInteger){
-        String firstNumber = this.toString();
-        String secondNumber = hugeInteger.toString();
-        BigInteger numberOne = new BigInteger(firstNumber);
-        BigInteger numberTwo= new BigInteger(secondNumber);
-        BigInteger sum = numberOne.add(numberTwo);
-        this.parse(sum.toString());
+        int firstArrayLength = this.toString().length();
+        int secondArrayLength = hugeInteger.toString().length();
+        int loopLength = 0;
+
+        if(firstArrayLength > secondArrayLength) loopLength = firstArrayLength;
+        else loopLength = secondArrayLength;
+
+        int stopIndex = 40 - loopLength;
+        int carryOver = 0;
+        int index = 39;
+        for(; index >= stopIndex; index--){
+            int sum = numberArray[index] + hugeInteger.numberArray[index] + carryOver;
+            carryOver = sum/10;
+            int remainder = sum % 10;
+            numberArray[index] = remainder;
+        }
+        numberArray[index] = carryOver;
     }
 
     public void subtract(HugeIntegers hugeInteger) {
-        String firstNumber = this.toString();
-        String secondNumber = hugeInteger.toString();
-        BigInteger numberOne = new BigInteger(firstNumber);
-        BigInteger numberTwo= new BigInteger(secondNumber);
-        BigInteger difference = numberOne.subtract(numberTwo);
-        this.parse(difference.toString());
+        int firstArrayLength = this.toString().length();
+        int secondArrayLength = hugeInteger.toString().length();
+        int loopLength = 0;
+
+        if(firstArrayLength > secondArrayLength) loopLength = firstArrayLength;
+        else loopLength = secondArrayLength;
+
+        int stopIndex = 40 - loopLength;
+        int carryOver = 0;
+        int index = 39;
+        for(; index >= stopIndex; index--){
+            int sum = numberArray[index] + hugeInteger.numberArray[index] + carryOver;
+            carryOver = sum/10;
+            int remainder = sum % 10;
+            numberArray[index] = remainder;
+        }
+        numberArray[index] = carryOver;
     }
 
     public boolean isGreaterThan(HugeIntegers hugeInteger) {

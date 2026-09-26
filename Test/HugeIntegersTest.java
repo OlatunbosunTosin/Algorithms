@@ -15,7 +15,7 @@ public class HugeIntegersTest {
     @Test
     public void parseStringOfLength10ToArrayTest(){
         String digits = "1234567890";
-        int[] expected = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,2,3,4,5,6,7,8,9,0};
+        int[] expected = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9,0};
         assertArrayEquals(expected, hugeIntegers.parse(digits));
     }
 
@@ -86,7 +86,7 @@ public class HugeIntegersTest {
         hugeIntegersTwo.parse(digitTwo);
 
         hugeIntegers.add(hugeIntegersTwo);
-        int[] summedIntegers = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2,4,0,2,4,0,0};
+        int[] summedIntegers = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,4,0,2,4,0,0};
         assertArrayEquals(hugeIntegers.getNumberArray(), summedIntegers);
     }
 
@@ -100,7 +100,7 @@ public class HugeIntegersTest {
         hugeIntegersTwo.parse(digitTwo);
 
         hugeIntegers.add(hugeIntegersTwo);
-        int[] summedIntegers = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,0,0,0,0};
+        int[] summedIntegers = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0};
 
         assertArrayEquals(hugeIntegers.getNumberArray(), summedIntegers);
     }
